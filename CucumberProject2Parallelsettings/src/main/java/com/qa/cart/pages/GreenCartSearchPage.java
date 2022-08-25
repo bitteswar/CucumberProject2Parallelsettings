@@ -1,0 +1,82 @@
+package com.qa.cart.pages;
+
+import java.util.HashMap;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+import com.qa.cart.utility.Utility;
+
+public class GreenCartSearchPage {
+
+	HashMap<String, By> webelemap = new HashMap<String, By>();
+	private WebDriver driver;
+
+	private By search_textbox = By.xpath("//input[@class='search-keyword']");
+	private By productname = By.xpath("//h4[@class='product-name']");
+	private By topdeals_link = By.xpath("//a[contains(text(),'Top Deals')]");
+	private By search_button = By.xpath("//button[@type='submit']");
+	private By cartbag_image = By.xpath("//img[@alt='Cart']");
+	private By Addtocart_button = By.xpath("//button[text()='ADD TO CART']");
+	private By increment_button = By.xpath("//a[@class='increment']");
+	private By proceed_checkout = By.xpath("//button[text()='PROCEED TO CHECKOUT']");
+	
+	Utility ut;
+
+	public GreenCartSearchPage(WebDriver driver) {
+
+		this.driver = driver;
+		ut=new Utility(driver);
+	}
+
+	public void searchItem(String shortname) {
+
+		driver.findElement(search_textbox).sendKeys(shortname);
+
+	}
+
+	public String productName() {
+		String prodName = driver.findElement(productname).getText().split("-")[0].trim();
+		return prodName;
+
+	}
+
+	public HashMap<String, By> getgreenCartWebElements() {
+		webelemap.put("search_textbox", search_textbox);
+		webelemap.put("search_button", search_button);
+		webelemap.put("productname", productname);
+		webelemap.put("topdeals_link", topdeals_link);
+
+		return webelemap;
+
+	}
+
+	public void increment(int count) {
+
+		int i = count - 1;
+		while (i > 0) {
+			driver.findElement(increment_button).click();
+
+			i--;
+
+		}
+
+	}
+
+	public void clickAddcart() throws InterruptedException {
+		Thread.sleep(1000);
+		driver.findElement(Addtocart_button).click();
+
+		System.out.println("Add to cart button has been clicked");
+
+	}
+
+	public void proceedCheckout() throws InterruptedException {
+		Thread.sleep(1000);
+		driver.findElement(cartbag_image).click();
+		//Thread.sleep(3000);
+		ut.clickelement(driver.findElement(proceed_checkout), 5);
+
+	}
+
+}

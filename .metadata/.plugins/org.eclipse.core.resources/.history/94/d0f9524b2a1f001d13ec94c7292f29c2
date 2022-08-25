@@ -1,0 +1,5 @@
+package com.qa.cart.utility;
+
+public class ConfigReader {
+
+}

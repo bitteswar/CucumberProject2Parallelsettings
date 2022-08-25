@@ -1,0 +1,17 @@
+package stepDefinitions;
+
+import com.qa.cart.utility.TestContexSetup;
+
+public class ProductCartStepDefn {
+	
+	private TestContexSetup testcontex;
+
+	public ProductCartStepDefn(TestContexSetup testcontex) {
+
+		this.testcontex = testcontex;
+	}
+	
+	
+	
+
+}

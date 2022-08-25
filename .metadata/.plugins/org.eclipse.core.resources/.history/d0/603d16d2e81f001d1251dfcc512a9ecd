@@ -1,0 +1,21 @@
+package com.qa.cart.pages;
+
+import org.openqa.selenium.WebDriver;
+
+import com.qa.cart.utility.Utility;
+
+
+
+public class CheckOutPage {
+	private WebDriver driver;
+	
+	
+	public CheckOutPage(WebDriver driver) {
+
+		this.driver = driver;
+	
+	}
+	
+	
+
+}

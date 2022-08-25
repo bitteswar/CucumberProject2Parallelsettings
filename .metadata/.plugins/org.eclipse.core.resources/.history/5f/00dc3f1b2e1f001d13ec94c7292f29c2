@@ -1,0 +1,45 @@
+package apphooks;
+
+import java.util.Properties;
+
+import org.openqa.selenium.WebDriver;
+
+import com.qa.cart.utility.ConfigReader;
+import com.qa.factory.DriverFactory;
+
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
+
+public class ApplicationHook {
+
+	private ConfigReader configreader;
+	Properties prop;
+	private DriverFactory driverFactory;
+	WebDriver driver;
+
+	@Before()
+	public void getProperty() {
+		configreader = new ConfigReader();
+
+		prop = configreader.initializeprop();
+
+	}
+
+	@Before (order =1)
+	public void lunchBrowser() {
+
+		String browsername = prop.getProperty("browser");
+
+		driverFactory = new DriverFactory();
+
+		driver = driverFactory.init_driver(browsername);
+
+	}
+
+	@After(order = 1)
+	public void quitdriver() {
+		driver.quit();
+
+	}
+
+}

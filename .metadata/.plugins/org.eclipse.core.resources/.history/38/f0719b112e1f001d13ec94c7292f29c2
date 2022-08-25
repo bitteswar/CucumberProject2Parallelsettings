@@ -1,0 +1,19 @@
+package apphooks;
+
+import com.qa.cart.utility.ConfigReader;
+
+import io.cucumber.java.Before;
+
+public class ApplicationHook {
+
+	private ConfigReader configreader;
+
+	@Before()
+	public void getProperty() {
+		configreader=new ConfigReader();
+
+		configreader.initializeprop();
+
+	}
+
+}

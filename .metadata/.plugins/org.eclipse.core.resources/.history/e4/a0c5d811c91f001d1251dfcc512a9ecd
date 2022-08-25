@@ -1,0 +1,48 @@
+package com.qa.cart.utility;
+
+import java.time.Duration;
+import java.util.Iterator;
+import java.util.Set;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class Utility {
+
+	WebDriver driver;
+
+	public Utility(WebDriver driver) {
+
+		this.driver = driver;
+	}
+
+	public void movingtochildwindow() {
+
+		String ParentWindow = driver.getWindowHandle();
+
+		Set<String> windowlist = driver.getWindowHandles();
+
+		Iterator<String> itr = windowlist.iterator();
+
+		while (itr.hasNext()) {
+			String childwindow = itr.next();
+
+			if (!ParentWindow.equalsIgnoreCase(childwindow)) {
+
+				driver.switchTo().window(childwindow);
+			}
+
+		}
+	}
+
+	public void clickelement(WebElement ele, Duration timeouts) {
+
+		WebDriverWait wb = new WebDriverWait(driver, timeouts);
+		wb.until(ExpectedConditions.visibilityOf(ele));
+
+		ele.click();
+	}
+
+}

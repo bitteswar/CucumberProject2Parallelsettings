@@ -1,0 +1,32 @@
+package stepDefinitions;
+
+import com.qa.cart.pages.GreenCartSearchPage;
+import com.qa.cart.utility.TestContexSetup;
+import com.qa.factory.DriverFactory;
+
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
+public class ProductCartStepDefn {
+	
+	private TestContexSetup testcontex;
+	GreenCartSearchPage gc;
+
+	public ProductCartStepDefn(TestContexSetup testcontex) {
+
+		this.testcontex = testcontex;
+		
+		gc = new GreenCartSearchPage(DriverFactory.getDriver());
+	}
+	
+
+	@Then("^User proceeds to the Checkout and Validate the (.+) items in chekout page$")
+	public void user_proceeds_to_the_checkout_and_validate_the_name_items_in_chekout_page(String shortname) throws InterruptedException {
+		
+		gc.clickAddcart();
+		Thread.sleep(2000);
+	 
+		
+	}
+
+}
